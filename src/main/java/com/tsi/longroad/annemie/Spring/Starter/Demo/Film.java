@@ -3,7 +3,9 @@ package com.tsi.longroad.annemie.Spring.Starter.Demo;
 import jakarta.persistence.*;
 
 import java.time.Year;
-import java.lang.Short;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="film")
@@ -23,8 +25,13 @@ public class Film
     @Column(name = "release_year")
     private Year releaseYear;
 
+
     @Column(name = "language_id")
-    private short languageID;
+    private Integer languageID;
+
+//    @ManyToOne()
+//    @JoinColumn(name = "language_id", referencedColumnName = "language_id", nullable = false, insertable=false, updatable=false)
+//    private Language language;
 
 //    @Column(name = "original_language_id")
 //    private Short origLanguageID;
@@ -48,6 +55,9 @@ public class Film
     @Column(name="special_features")
     private String specialFeatures;
 
+    @ManyToMany(mappedBy = "films")
+    private Set<Actor> actors = new HashSet<>();
+
     // SETTERS
 
     public void setFilmID(int filmID)
@@ -70,10 +80,15 @@ public class Film
         this.releaseYear = releaseYear;
     }
 
-    public void setLanguageID(short languageID)
+    public void setLanguageID(Integer languageID)
     {
         this.languageID = languageID;
     }
+
+//    public void setLanguage(Language language)
+//    {
+//        this.language = language;
+//    }
 
     public void setRentalDuration(short rentalDuration)
     {
@@ -127,10 +142,16 @@ public class Film
         return releaseYear;
     }
 
-    public short getLanguageID()
+    public Integer getLanguageID()
     {
         return languageID;
     }
+
+//    public Language getLanguage()
+//    {
+//        return language;
+//    }
+
 
 //    public short getOrigLanguageID()
 //    {
@@ -168,12 +189,13 @@ public class Film
     }
 
     // CONSTRUCTORS
-    public Film()
-    {
-        title = "";
-        languageID = 1;
-        rentalDuration = 0;
-        rentalRate = 0.00d;
-        replacementCost = 0.00d;
-    }
+//    public void Film()
+//    {
+//        title = "";
+//        //languageID = 1;
+////        language = new Language();
+//        rentalDuration = 0;
+//        rentalRate = 0.00d;
+//        replacementCost = 0.00d;
+//    }
 }

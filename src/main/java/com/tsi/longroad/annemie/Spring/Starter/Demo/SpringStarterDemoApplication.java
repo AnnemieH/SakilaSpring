@@ -8,31 +8,20 @@ import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("/home")
-@CrossOrigin
 public class SpringStarterDemoApplication
 {
 	@Autowired
-	private ActorRepository actorRep;
+	private ActorController actorCont;
+
 	@Autowired
-	private FilmRepository filmRep;
+	private FilmController filmCont;
 
-	@GetMapping("/allActors")
-	public Iterable<Actor> getAllActors()
-	{
-		return actorRep.findAll();
-	}
 
-	@GetMapping("/allFilms")
-	public Iterable<Film> getAllFilms()
-	{
-		return filmRep.findAll();
-	}
 
-	public SpringStarterDemoApplication(ActorRepository actorRep, FilmRepository filmRep)
+	public SpringStarterDemoApplication(ActorController actorCont, FilmController filmCont)
 	{
-		this.actorRep = actorRep;
-		this.filmRep = filmRep;
+		this.actorCont = actorCont;
+		this.filmCont = filmCont;
 	}
 
 	public static void main(String[] args) {
