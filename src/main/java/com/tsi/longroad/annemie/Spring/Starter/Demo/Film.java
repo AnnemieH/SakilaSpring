@@ -188,14 +188,4 @@ public class Film
         return specialFeatures;
     }
 
-    // CONSTRUCTORS
-//    public void Film()
-//    {
-//        title = "";
-//        //languageID = 1;
-////        language = new Language();
-//        rentalDuration = 0;
-//        rentalRate = 0.00d;
-//        replacementCost = 0.00d;
-//    }
 }

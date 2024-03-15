@@ -1,32 +1,36 @@
 import { useState } from "react";
-import ActorDropDown from "./ActorDropDown.jsx";
+import FilmDropDown from "./FilmDropDown.jsx";
 
-export default function ActorForm()
+export default function FilmForm()
 {
     // Are we deleting an entry?
     const [deleting, setDeleting] = useState(false);
     // ID of the selected actor
     const [ID, setID] = useState(0);
     // URL of home actor
-    const actorURL = 'http://localhost:8080/home/allActors'
+    const filmURL = 'http://localhost:8080/home/allFilms'
     
     function storeID ( newID )
     {
         setID(newID);
     }
 
+    function filmJSON(event)
+    {
+        return JSON.stringify({title: event.target.title.value})
+    }
+
     function submitPost(event)
     {
         event.preventDefault();
-
 
         const requestOptions =
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({firstName: event.target.fname.value, lastName: event.target.lname.value})
+            body: filmJSON(event)
         };
-        fetch(actorURL, requestOptions)
+        fetch(filmURL, requestOptions)
             .then(response => response.json());
     };
 
@@ -36,7 +40,7 @@ export default function ActorForm()
         {
             method: 'DELETE',
         };
-        fetch(actorURL + '/' + ID, requestOptions)
+        fetch(filmURL + '/' + ID, requestOptions)
             .then(response => response.json());
     };
 
@@ -46,16 +50,16 @@ export default function ActorForm()
         {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({firstName: event.target.fname.value, lastName: event.target.lname.value}),
+            body: filmJSON(event),
         };
-        fetch(actorURL + '/' + ID, requestOptions)
+        fetch(filmURL + '/' + ID, requestOptions)
             .then(response => response.json())
     };
 
     function handleSubmit(event)
     {
         // Check to see if we're adding a new actor
-        if( event.target.actDrop.value === 'add')
+        if( event.target.filmDrop.value === 'add')
         {
             // If we are deleting a new entry, ignore
             if( !deleting )
@@ -85,20 +89,16 @@ export default function ActorForm()
     }
 
     return(
-        <form id="actorForm" onSubmit={e => handleSubmit(e)}>
-            <div className="formLabel">
-                <label htmlFor="actDrop">Actor to Edit:</label><br />
-                <label htmlFor="fname" className="formlabel">First Name: </label><br />                    
-                <label htmlFor="lname" className="formlabel">Last Name: </label><br />
-                <label htmlFor="deleteBox" className="formlabel">Delete? </label><br />
-            </div>
-            <div className="formFields">
-                <ActorDropDown id="actDrop" name="actDrop" form="actorForm" storeID={storeID}/><br />
-                <input type="text" id="fname" className="textbox" name="fname" /><br />
-                <input type="text" id="lname" className="textbox" name="lname" /><br />                      
+        <>
+            <label htmlFor="filmDrop">Film to Edit:</label>
+            <FilmDropDown id="filmDrop" name="filmDrop" form="filmForm" storeID={storeID}/>
+            <form id="filmForm" onSubmit={e => handleSubmit(e)}>
+                <label htmlFor="title">Title: </label>
+                <input type="text" id="title" name="title" /><br />
+                <label htmlFor="deleteBox">Delete? </label>
                 <input type="checkbox" id="deleteBox" name="deleteBox" onChange={handleDeleteChange} /><br />
                 <input type="submit" value="Submit"/>
-            </div>
-        </form>
+            </form>
+        </>
     )
 }

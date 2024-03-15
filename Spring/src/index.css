@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(255, 200, 243, 0.87);
+  background-color: #220920;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -54,9 +54,31 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+#actorForm{
+  overflow:hidden;
+}
+
+.formFields{
+  float:left;
+  margin-left: 20pt;
+}
+
+#actDrop {
+  width: 158px;
+}
+
+.textbox{
+  width: 150px;
+}
+
+.formLabel{
+  text-align: left;
+  float:left;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #3c1e50;
     background-color: #ffffff;
   }
   a:hover {

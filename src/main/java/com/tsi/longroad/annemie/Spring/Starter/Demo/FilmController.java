@@ -66,7 +66,7 @@ public class FilmController
     }
 
     @RequestMapping(value="/allFilms/{filmID}", method=RequestMethod.DELETE )
-    public void deleteFilm(@PathVariable("actorID") Integer id )
+    public void deleteFilm(@PathVariable("filmID") Integer id )
     {
         filmRepo.deleteById(id);
     }
