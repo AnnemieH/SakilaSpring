@@ -54,6 +54,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+#actorFormMain{
+  margin:auto;
+  width:max-content;
+  margin-top:50pt;
+}
+
 #actorForm{
   overflow:hidden;
 }
@@ -74,6 +80,38 @@ button:focus-visible {
 .formLabel{
   text-align: left;
   float:left;
+}
+
+.delete{
+  color: red;
+  background-color: maroon;
+  border-radius: 10pt;
+  display: inline-block;
+  min-width: 17pt;
+  cursor: grab;
+}
+
+.deletingtrue{
+  text-decoration: line-through;
+}
+
+.topTrumpsCell{
+  background-color: #595f5628;
+  padding: 3pt;
+}
+
+.gameFilmList{
+  background-color: #42234b;
+  border-radius: 10pt;
+  margin: 4px;
+  padding: 1pt;
+}
+.gameFilmList.true{
+  background-color: green;
+}
+
+.tooltip{
+  background-color: rgba(180, 117, 187, 0.637);
 }
 
 @media (prefers-color-scheme: light) {

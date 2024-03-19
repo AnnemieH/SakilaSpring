@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react"
 
-export default function ActorDropDown(props)
+export default function FilmGameActorDropDown(props)
 {
     const id = props.id;
     const name = props.name;
-    const form = props.form;
 
     const [actors, setActors] = useState([]);
 
@@ -41,8 +40,8 @@ export default function ActorDropDown(props)
     }
 
     return(
-        <select id = {id} name = {name} form = {form} onChange={changeActor}>
-                <option value='add' id='add'>Add Actor</option>
+        <select id = {id} name = {name} onChange={changeActor}>
+                <option value='add' id='add'>Choose your actor!</option>
                 {actors.map( actor => (
                     <option key={actor.actorID} name={actor.actorID} value={actor.actorID}>
                         {actor.firstName + " " + actor.lastName}
